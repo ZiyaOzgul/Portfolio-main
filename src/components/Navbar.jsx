@@ -49,27 +49,60 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden sm:flex items-center gap-1">
-          {navLinks.map((item) => (
-            <a
-              href={`#${item.id}`}
-              key={item.id}
-              onClick={() => setActive(item.title)}
-              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                active === item.title
-                  ? "text-white"
-                  : "text-secondary hover:text-white"
-              }`}
-            >
-              {active === item.title && (
-                <motion.div
-                  layoutId="activeNav"
-                  className="absolute inset-0 bg-accent/10 rounded-lg border border-accent/20"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">{item.title}</span>
-            </a>
-          ))}
+          {navLinks.map((item) => {
+            const isContact = item.id === "contact";
+            const isCV = item.id === "cv";
+
+            if (isCV) {
+              return (
+                <Link
+                  to="/cv"
+                  key={item.id}
+                  onClick={() => setActive(item.title)}
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    active === item.title
+                      ? "text-white"
+                      : "text-secondary hover:text-white"
+                  }`}
+                >
+                  {active === item.title && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute inset-0 bg-accent/10 rounded-lg border border-accent/20"
+                      transition={{
+                        type: "spring",
+                        bounce: 0.2,
+                        duration: 0.6,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.title}</span>
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                href={`/#${item.id}`}
+                key={item.id}
+                onClick={() => setActive(item.title)}
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  active === item.title
+                    ? "text-white"
+                    : "text-secondary hover:text-white"
+                }`}
+              >
+                {active === item.title && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute inset-0 bg-accent/10 rounded-lg border border-accent/20"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">{item.title}</span>
+              </a>
+            );
+          })}
         </div>
 
         {/* Mobile Nav */}
@@ -94,23 +127,44 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
                 className="absolute right-4 top-16 w-48 glass rounded-xl p-4 flex flex-col gap-2 shadow-glow"
               >
-                {navLinks.map((item) => (
-                  <a
-                    href={`#${item.id}`}
-                    key={item.id}
-                    onClick={() => {
-                      setToggle(false);
-                      setActive(item.title);
-                    }}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                      active === item.title
-                        ? "text-white bg-accent/10"
-                        : "text-secondary hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    {item.title}
-                  </a>
-                ))}
+                {navLinks.map((item) => {
+                  if (item.id === "cv") {
+                    return (
+                      <Link
+                        to="/cv"
+                        key={item.id}
+                        onClick={() => {
+                          setToggle(false);
+                          setActive(item.title);
+                        }}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                          active === item.title
+                            ? "text-white bg-accent/10"
+                            : "text-secondary hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {item.title}
+                      </Link>
+                    );
+                  }
+                  return (
+                    <a
+                      href={`/#${item.id}`}
+                      key={item.id}
+                      onClick={() => {
+                        setToggle(false);
+                        setActive(item.title);
+                      }}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                        active === item.title
+                          ? "text-white bg-accent/10"
+                          : "text-secondary hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      {item.title}
+                    </a>
+                  );
+                })}
               </motion.div>
             )}
           </AnimatePresence>

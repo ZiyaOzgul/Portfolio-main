@@ -12,6 +12,9 @@ import Experience from "./Experience";
 import Works from "./Works";
 import Contact from "./Contact";
 
+import CV from "./CV";
+import CustomCursor from "./CustomCursor";
+
 export {
   Hero,
   Navbar,
@@ -24,4 +27,6 @@ export {
   BallCanvas,
   ComputersCanvas,
   StarsCanvas,
+  CV,
+  CustomCursor,
 };
