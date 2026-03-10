@@ -12,11 +12,16 @@ import {
   CV,
   CustomCursor,
 } from "./components/index";
+import useIsMobile from "./hooks/useIsMobile";
 
 const App = () => {
+  const isMobile = useIsMobile(768);
+
   return (
-    <div className="relative z-0 bg-primary cursor-none selection:bg-accent/30">
-      <CustomCursor />
+    <div
+      className={`relative z-0 bg-primary selection:bg-accent/30 ${isMobile ? "" : "cursor-none"}`}
+    >
+      {!isMobile && <CustomCursor />}
       {/* Global stars background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <StarsCanvas />

@@ -2,11 +2,13 @@ import { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
+import CanvasErrorBoundary from "./CanvasErrorBoundary";
+import useIsMobile from "../../hooks/useIsMobile";
 
-const Stars = (props) => {
+const Stars = ({ count = 5000 }) => {
   const ref = useRef();
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 }),
+    random.inSphere(new Float32Array(count), { radius: 1.2 }),
   );
 
   useFrame((state, delta) => {
@@ -16,7 +18,7 @@ const Stars = (props) => {
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled>
         <PointMaterial
           transparent
           color="#B5D6B8"
@@ -30,15 +32,23 @@ const Stars = (props) => {
 };
 
 const StarsCanvas = () => {
+  const isMobile = useIsMobile(768);
+
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
-        <Suspense fallback={null}>
-          <Stars />
-        </Suspense>
-
-        <Preload all />
-      </Canvas>
+      <CanvasErrorBoundary>
+        <Canvas
+          camera={{ position: [0, 0, 1] }}
+          frameloop={isMobile ? "demand" : "always"}
+          dpr={isMobile ? [1, 1] : [1, 2]}
+          gl={{ powerPreference: "low-power" }}
+        >
+          <Suspense fallback={null}>
+            <Stars count={isMobile ? 1000 : 5000} />
+          </Suspense>
+          <Preload all />
+        </Canvas>
+      </CanvasErrorBoundary>
     </div>
   );
 };
