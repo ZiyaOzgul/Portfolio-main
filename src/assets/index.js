@@ -37,6 +37,8 @@ import commerce from "./eCommerce.png";
 import weather from "./Weather-app.png";
 import note from "./note-2.png";
 import planner from "./Daily-Planner.jpeg";
+import nixara from "./nixara.png";
+import shapely from "./shapely.png";
 
 import forecast from "./forecast-1.png";
 import recipe from "./Recipe-1.png";

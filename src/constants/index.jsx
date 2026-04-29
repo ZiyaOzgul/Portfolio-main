@@ -34,6 +34,7 @@ import {
   artvicco,
   ui,
   horoscope,
+  nixara,
 } from "../assets";
 
 export const navLinks = [
@@ -261,6 +262,48 @@ const experiences = [
 ];
 
 const projects = [
+  {
+    name: "Shapely",
+    description:
+      "AI-powered text transformation app. Rewrites, summarizes, and stylizes any text using GPT-4o. Supports 5 languages with a fully localized UI and freemium subscription model via Adapty.",
+    tags: [
+      {
+        name: "Next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TailwindCss",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Expo",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: shapely,
+    source_code_link: "https://github.com/ZiyaOzgul/Shapely",
+  },
+  {
+    name: "Nixara",
+    description:
+      "AI-powered astrology and horoscope app. Features natal chart analysis, palm reading, and personalized daily insights powered by Claude AI. Built with React Native and Expo.",
+    tags: [
+      {
+        name: "Next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Tailwindcss",
+        color: "green-text-gradient",
+      },
+      {
+        name: "",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: nixara,
+    source_code_link: "https://github.com/ZiyaOzgul",
+  },
   {
     name: "Artvicco E-Commerce",
     description:
