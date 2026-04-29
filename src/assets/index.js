@@ -92,4 +92,6 @@ export {
   takosanLogo,
   upworkLogo,
   horoscopeLogo,
+  nixara,
+  shapely,
 };
