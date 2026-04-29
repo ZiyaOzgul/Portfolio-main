@@ -35,6 +35,7 @@ import {
   ui,
   horoscope,
   nixara,
+  shapely,
 } from "../assets";
 
 export const navLinks = [
